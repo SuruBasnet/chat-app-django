@@ -4,29 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Tailwind CSS output file -->
-    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
-
-    <!-- Alpine.js tag - directly from CDN (not recommended for production) -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div style="display: flex; justify-content: center; margin: 10%; ">
-        <c-card class='w-[380px]'>
-            <c-card.header>
-                <c-card.title>Chat</c-card.title>
-                <c-card.description>Communicate with your friends.</c-card.description>
-            </c-card.header>
-            <c-card.content class='space-y-2'>
-                <div class='flex flex-col space-y-1'>
-                </div>
-            </c-card.content>
-            <c-card.footer class='flex justify-between'>
-                <c-input id='name'  placeholder='Enter something...' />
-                <c-button style="margin-inline-start: 20px;">Submit</c-button>
-            </c-card.footer>
-        </c-card>
-    </div>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in users %}
+      <tr>
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.username}}</td>
+        <td>{{i.email}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
 </html>
