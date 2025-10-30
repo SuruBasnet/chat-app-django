@@ -15,10 +15,20 @@ def home_view(request):
 @login_required(login_url='login')
 def friend_request_send_view(request):
     user = request.user # URL/VIEW requesting user (authenticated/authorized user)
+    if request.method == 'POST':
+        user_id = request.POST.get('request_user')
+        request_user = User.objects.get(id=user_id)
+        FriendRequest.objects.create(request_user=request_user,requested_by_user=user,status='Pending')
     friend_request_queryset = FriendRequest.objects.filter(requested_by_user=user).values_list('request_user') # Filtering all friend request data where requested by user is url request user , converting onto list where the values are only request_user(request sent user)
 
     user_queryset = User.objects.all().exclude(id__in=friend_request_queryset).exclude(id=request.user.id) # Excluding users from all user data where id of user is in list of request sent user, also excluding url request user
     return render(request,'friendRequestSend.html',context={'users':user_queryset})
+
+@login_required(login_url='login')
+def friend_request_list_view(request):
+    user = request.user
+    queryset = FriendRequest.objects.filter(request_user=user)
+    return render(request,'friendRequestList.html',context={'friend_requests':queryset})
 
 def register_view(request):
     if request.method == 'POST':
