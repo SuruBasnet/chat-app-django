@@ -25,6 +25,12 @@ def friend_request_send_view(request):
     return render(request,'friendRequestSend.html',context={'users':user_queryset})
 
 @login_required(login_url='login')
+def friend_request_delete_view(request,pk):
+    queryset = FriendRequest.objects.get(id=pk)
+    queryset.delete()
+    return redirect('friend_request_list')
+
+@login_required(login_url='login')
 def friend_request_list_view(request):
     user = request.user
     queryset = FriendRequest.objects.filter(request_user=user)

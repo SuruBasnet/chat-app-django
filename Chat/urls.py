@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from base.views import home_view,register_view,login_view,friend_request_send_view, friend_request_list_view, friend_request_status_update_view
+from base.views import home_view,register_view,login_view,friend_request_send_view, friend_request_list_view, friend_request_status_update_view,friend_request_delete_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,4 +27,5 @@ urlpatterns = [
     path("friend/request/send/", friend_request_send_view,name='friend_request_send'),
     path("friend/request/list/", friend_request_list_view,name='friend_request_list'),
     path("friend/request/status/update/<int:pk>/", friend_request_status_update_view,name='friend_request_status_update'),
+    path("friend/request/delete/<int:pk>/", friend_request_delete_view,name='friend_request_delete'),
 ]

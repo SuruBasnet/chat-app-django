@@ -23,7 +23,7 @@
         <th scope="row">{{f.id}}</th>
         <td>{{f.requested_by_user.username}}</td>
         <td>{{f.status}}</td>
-        <td><a href="{% url 'friend_request_status_update' pk=f.id %}"><Button class="btn btn-warning">Edit</Button></a> <Button class="btn btn-danger">Delete</Button></td>
+        <td><a href="{% url 'friend_request_status_update' pk=f.id %}"><Button class="btn btn-warning">Edit</Button></a> <a href="{% url 'friend_request_delete' pk=f.id %}"><Button class="btn btn-danger">Delete</Button></a></td>
       </tr>
     {% endfor %}
   </tbody>
