@@ -30,6 +30,15 @@ def friend_request_list_view(request):
     queryset = FriendRequest.objects.filter(request_user=user)
     return render(request,'friendRequestList.html',context={'friend_requests':queryset})
 
+@login_required(login_url='login')
+def friend_request_status_update_view(request,pk):
+    queryset = FriendRequest.objects.get(id=pk)
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        queryset.status = status
+        queryset.save()
+    return render(request,'friendRequestStatusUpdate.html',context={'friend_request':queryset})
+
 def register_view(request):
     if request.method == 'POST':
         error_message =  ''

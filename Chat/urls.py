@@ -17,13 +17,14 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from base.views import home_view,register_view,login_view,friend_request_send_view, friend_request_list_view
+from base.views import home_view,register_view,login_view,friend_request_send_view, friend_request_list_view, friend_request_status_update_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("home/",home_view,name='home'),
     path("register/",register_view,name='register'),
     path("login/",login_view,name='login'),
-    path("friend/request/send/", friend_request_send_view,name='friend_request_send_view'),
-    path("friend/request/list/", friend_request_list_view,name='friend_request_list_view'),
+    path("friend/request/send/", friend_request_send_view,name='friend_request_send'),
+    path("friend/request/list/", friend_request_list_view,name='friend_request_list'),
+    path("friend/request/status/update/<int:pk>/", friend_request_status_update_view,name='friend_request_status_update'),
 ]
